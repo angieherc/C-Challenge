@@ -25,13 +25,13 @@
 #pragma config CPD = OFF
 
 //***************Variables and constants***************//
-unsigned char A0=200; //this is an array of 136 bits long enough to store A0 output data 
+unsigned char A0[17]; //this is an array of 136 bits long enough to store A0 output data 
 // usigned char 1 byte 8*17= 136 bits 
-unsigned short dataADC = 1000;
+unsigned short dataADC = 0;
 unsigned short localADC = 0;
-unsigned char adcFlag = 1; //to satart the ADC
+unsigned char adcFlag = 0; //to satart the ADC
 unsigned char flag;
-unsigned int dato= 1.5;
+unsigned int dato;
 unsigned int d_ADC;
 //********** Function signatures or prototypes**********// 
 void InitializeBoard(void); // this is the function to initilaze usart
@@ -73,7 +73,7 @@ void main (void)
 {	
 	if(adcFlag == 1)
 		{
-		  //adcFlag = 0;
+		  
 		//11111111 = 2.4 volts full output
 		//00000000 = 0 mv min value is 125 mv 
 		// to obtain values from 0 to 2.4 v 
@@ -90,7 +90,7 @@ void main (void)
 			putrsUSART("The sensor is not working");
 			}
 		}
-    adcFlag==0;
+    adcFlag==0; //turn off the flag once the operation is finished
 
 }
 }
